@@ -12,11 +12,11 @@
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 			@if (Auth::user())
 				<div class="image">
-					<img width="100" height="100" class="mg-circle elevation-2" src="{{ url('storage/photoUsers/'.$user->photo ) }}">
+					<img width="100" height="100" class="mg-circle elevation-2" src="{{ url('storage/photoUsers/'.Auth::user()->photo ) }}">
 
 				</div>
 				<div class="info">
-					<a href="#" class="d-block">{{$user->name}}</a>
+					<a href="#" class="d-block">{{ Auth::user()->name }} </a>
 				</div>
 			@else
 				<div class="image">
