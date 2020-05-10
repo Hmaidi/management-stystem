@@ -10,12 +10,25 @@
 	<div class="sidebar">
 		<!-- Sidebar user panel (optional) -->
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-			<div class="image">
-				<img src="{{ asset('assets/backend/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
-			</div>
-			<div class="info">
-				<a href="#" class="d-block">Alexander Pierce</a>
-			</div>
+			@if (Auth::user())
+				<div class="image">
+					<img width="100" height="100" class="mg-circle elevation-2" src="{{ url('storage/photoUsers/'.$user->photo ) }}">
+
+				</div>
+				<div class="info">
+					<a href="#" class="d-block">{{$user->name}}</a>
+				</div>
+			@else
+				<div class="image">
+					<img src="{{ asset('assets/backend/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+
+				</div>
+				<div class="info">
+					<a href="#" class="d-block">Nouveau utilisateur </a>
+				</div>
+
+			@endif
+
 		</div>
 
 		<!-- Sidebar Menu -->
@@ -31,49 +44,51 @@
 						</p>
 					</a>
 				</li>
-
+				@can('users_manage')
 					<li class="nav-item has-treeview">
 						<a class="nav-link  nav-dropdown-toggle" href="#">
-							<i class="fa-fw fas fa-users nav-icon">
+							<i class="fa-fw fa fa-users nav-icon"></i>
+							<p>
+								{{ trans('cruds.userManagement.title') }}
+								<i class="right fa fa-angle-left"></i>
+							</p>
 
-							</i>
-							{{ trans('cruds.userManagement.title') }}
-							<i class="right fa fa-angle-left"></i>
+
 						</a>
 						<ul class="nav nav-treeview">
 
 								<li class="nav-item">
 									<a href="{{ route("admin.permissions.index") }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
-										<i class="fa-fw fas fa-unlock-alt nav-icon">
+										<i class="fa-fw fa fa-unlock-alt nav-icon">
 
 										</i>
-										{{ trans('cruds.permission.title') }}
+										<p>{{ trans('cruds.permission.title') }}</p>
 									</a>
 								</li>
 
 
 									<li class="nav-item">
 									<a href="{{ route("admin.roles.index") }}" class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
-										<i class="fa-fw fas fa-briefcase nav-icon">
+										<i class="fa-fw fa fa-briefcase nav-icon">
 
 										</i>
-										{{ trans('cruds.role.title') }}
+										<p>{{ trans('cruds.role.title') }}</p>
 									</a>
 								</li>
 
 
 									<li class="nav-item">
 									<a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
-										<i class="fa-fw fas fa-user nav-icon">
+										<i class="fa-fw fa fa-user nav-icon">
 
 										</i>
-										{{ trans('cruds.user.title') }}
+										<p>{{ trans('cruds.user.title') }}</p>
 									</a>
 								</li>
 
 						</ul>
 					</li>
-
+                 @endcan
 				<li class="nav-item has-treeview {{ Request::is('admin/employee*') ? 'menu-open' : '' }}">
 					<a href="#" class="nav-link {{ Request::is('admin/employee*') ? 'active' : '' }}">
 						<i class="nav-icon fa fa-pie-chart"></i>

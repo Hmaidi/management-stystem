@@ -1,11 +1,14 @@
 @extends('layouts.backend.app')
 @section('content')
-
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.role.title') }}
-    </div>
-
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="card">
+                <div class="card-header">
+                    {{ trans('global.show') }} {{ trans('cruds.role.title') }}
+                </div>
+            </div>
+        </section>
+            <section class="content">
     <div class="card-body">
         <div class="mb-2">
             <table class="table table-bordered table-striped">
@@ -52,5 +55,8 @@
 
         </div>
     </div>
+            </section>
+
 </div>
+    </div>
 @endsection

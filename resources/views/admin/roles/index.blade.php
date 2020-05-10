@@ -1,5 +1,6 @@
 @extends('layouts.backend.app')
 @section('content')
+    <section class="content-header">
 <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
         <a class="btn btn-success" href="{{ route("admin.roles.create") }}">
@@ -7,6 +8,9 @@
         </a>
     </div>
 </div>
+    </section>
+<div class="content-wrapper">
+    <section class="content">
 <div class="card">
     <div class="card-header">
         {{ trans('cruds.role.title_singular') }} {{ trans('global.list') }}
@@ -76,6 +80,9 @@
 
     </div>
 </div>
+    </section>
+</div>
+
 @endsection
 @section('scripts')
 @parent
