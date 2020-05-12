@@ -16,7 +16,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 offset-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"> {{ trans('global.Dashboard') }}</a></li>
                             <li class="breadcrumb-item active">Update Category</li>
                         </ol>
                     </div>
@@ -43,17 +43,24 @@
                                 @method('PUT')
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-12">
+
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Category Name</label>
-                                                <input type="text" class="form-control" name="name" value="{{ $category->name }}" placeholder="Enter Category Name">
+                                                <label> {{ trans('categorie.category.Name') }} {{ trans('categorie.category.Category') }}</label>
+                                                <input type="text" class="form-control" name="name" value="{{ $category->name }}" placeholder="créer une catégorie">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label> {{ trans('categorie.category.Create') }} {{ trans('categorie.category.depot')  }}</label>
+                                                <input type="text" class="form-control" name="garage" value="{{ $category->garage }}" placeholder="Ajouter un dépot">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary float-md-right">Update Category</button>
+                                    <button type="submit" class="btn btn-primary float-md-right">{{ trans('categorie.category.update') }} {{ trans('categorie.category.Category') }}</button>
                                 </div>
                             </form>
                         </div>

@@ -67,12 +67,12 @@
                                     @foreach($pendings as $key => $order)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ $order->customer->name }}</td>
-                                            <td>{{ $order->created_at->toFormattedDateString() }}</td>
-                                            <td>{{ $order->total_products }}</td>
-                                            <td>{{ $order->total }}</td>
-                                            <td>{{ $order->payment_status }}</td>
-                                            <td><span class="badge badge-warning">{{ $order->order_status }}</span></td>
+                                            <td>{{ $order->customer->name ?? ''}}</td>
+                                            <td>{{ $order->created_at->toFormattedDateString() ?? ''}}</td>
+                                            <td>{{ $order->total_products ?? '' }}</td>
+                                            <td>{{ $order->total ?? ''}}</td>
+                                            <td>{{ $order->payment_status ?? '' }}</td>
+                                            <td><span class="badge badge-warning">{{ $order->order_status ?? '' }}</span></td>
 
                                             <td>
                                                 <a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-success">
@@ -119,9 +119,9 @@
     <script src="{{ asset('assets/backend/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
     <!-- FastClick -->
     <script src="{{ asset('assets/backend/plugins/fastclick/fastclick.js') }}"></script>
-
+<script src="{{ asset('assets/backend/plugins/sweetalert2.all.min.js') }}"></script>
     <!-- Sweet Alert Js -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.29.1/dist/sweetalert2.all.min.js"></script>
+
 
 
     <script>

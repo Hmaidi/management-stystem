@@ -17,7 +17,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 offset-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"> {{ trans('global.Dashboard') }}</a></li>
                             <li class="breadcrumb-item active">Categories</li>
                         </ol>
                     </div>
@@ -109,9 +109,10 @@
     <script src="{{ asset('assets/backend/plugins/fastclick/fastclick.js') }}"></script>
 
     <!-- Sweet Alert Js -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.29.1/dist/sweetalert2.all.min.js"></script>
+<script src="{{ asset('assets/backend/js/sweetalert2.all.min.js') }}"></script>
 
 
+sweetalert2.all.min
     <script>
         $(function () {
             $("#example1").DataTable();
@@ -136,12 +137,12 @@
             })
 
             swalWithBootstrapButtons({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
+                title: '{{ trans('global.Areyousure')  }}',
+                text: "{{ trans('global.NotreturntoThis')  }}",
+                type: '{{ trans('global.Attention')  }}',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: '{{ trans('global.deleteThis')  }}',
+                cancelButtonText: '{{ trans('global.NoCancal')  }}',
                 reverseButtons: true
             }).then((result) => {
                 if (result.value) {
@@ -152,9 +153,9 @@
                     result.dismiss === swal.DismissReason.cancel
                 ) {
                     swalWithBootstrapButtons(
-                        'Cancelled',
-                        'Your data is safe :)',
-                        'error'
+                        '{{ trans('global.Cancelled')  }}',
+                        '{{ trans('global.Yourdataissafe')  }}',
+                        '{{ trans('global.errour')  }}'
                     )
                 }
             })

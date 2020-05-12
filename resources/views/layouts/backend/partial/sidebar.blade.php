@@ -24,7 +24,7 @@
 
 				</div>
 				<div class="info">
-					<a href="#" class="d-block">Nouveau utilisateur </a>
+					<a href="#" class="d-block">Nouveau utilisateur  	{{ trans('sidebar.menu.newuser') }}</a>
 				</div>
 
 			@endif
@@ -40,7 +40,9 @@
 					<a href="{{ route('admin.dashboard') }}" class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}">
 						<i class="nav-icon fa fa-dashboard"></i>
 						<p>
-							Dashboard
+
+							{{ trans('sidebar.menu.Dashboard') }}
+
 						</p>
 					</a>
 				</li>
@@ -85,15 +87,24 @@
 										<p>{{ trans('cruds.user.title') }}</p>
 									</a>
 								</li>
+							<li class="nav-item has-treeview">
+								<a href="{{ route('admin.setting.index') }}" class="nav-link {{ Request::is('admin/setting') ? 'active' : '' }}">
+									<i class="nav-icon fa fa-server"></i>
+									<p>
+										{{ trans('sidebar.menu.setting') }}
+									</p>
+								</a>
+							</li>
 
 						</ul>
 					</li>
                  @endcan
-				<li class="nav-item has-treeview {{ Request::is('admin/employee*') ? 'menu-open' : '' }}">
-					<a href="#" class="nav-link {{ Request::is('admin/employee*') ? 'active' : '' }}">
+				<li class="nav-item has-treeview {{ Request::is('admin/employee*') || Request::is('admin/attendance*') || Request::is('admin/advanced_salary*')? 'menu-open' : '' }}">
+					<a href="#" class="nav-link {{ Request::is('admin/employee*') || Request::is('admin/attendance*') ||  Request::is('admin/advanced_salary*') ? 'active' : '' }}">
 						<i class="nav-icon fa fa-pie-chart"></i>
 						<p>
-							Employee
+
+							{{ trans('sidebar.menu.Employee') }}
 							<i class="right fa fa-angle-left"></i>
 						</p>
 					</a>
@@ -101,48 +112,112 @@
 						<li class="nav-item">
 							<a href="{{ route('admin.employee.create') }}" class="nav-link {{ Request::is('admin/employee/create') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>Add Employee</p>
+								<p>
+									{{ trans('sidebar.menu.addemp') }}
+									</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="{{ route('admin.employee.index') }}" class="nav-link {{ Request::is('admin/employee') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>All Employee</p>
+								<p>
+									{{ trans('sidebar.menu.tousemp') }}
+								</p>
 							</a>
 						</li>
-					</ul>
-				</li>
-
-
-
-				<li class="nav-item has-treeview {{ Request::is('admin/attendance*') ? 'menu-open' : '' }}">
-					<a href="#" class="nav-link {{ Request::is('admin/attendance*') ? 'active' : '' }}">
-						<i class="nav-icon fa fa-pie-chart"></i>
-						<p>
-							Attendance (EMP)
-							<i class="right fa fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
 						<li class="nav-item">
 							<a href="{{ route('admin.attendance.create') }}" class="nav-link {{ Request::is('admin/attendance/create') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>Take Attendance</p>
+								<p>
+									{{ trans('sidebar.menu.Pointage') }}
+								</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="{{ route('admin.attendance.index') }}" class="nav-link {{ Request::is('admin/attendance') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>All Attendance</p>
+								<p>
+									{{ trans('sidebar.menu.PointagePrensence') }}
+								</p>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="{{ route('admin.advanced_salary.create') }}" class="nav-link {{ Request::is('admin/advanced_salary/create') ? 'active' : '' }}">
+								<i class="fa fa-circle-o nav-icon"></i>
+								<p>
+									{{ trans('sidebar.menu.Avancesalaire') }}
+									</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ route('admin.advanced_salary.index') }}" class="nav-link {{ Request::is('admin/advanced_salary') ? 'active' : '' }}">
+								<i class="fa fa-circle-o nav-icon"></i>
+								<p>
+									{{ trans('sidebar.menu.TousAvancesalaire') }}
+								</p>
+							</a>
+						</li>
+					</ul>
+
+
+
+				<li class="nav-item has-treeview {{ Request::is('admin/product*') || Request::is('admin/category') || Request::is('admin/supplier*') ? 'menu-open' : '' }}">
+					<a href="#" class="nav-link {{ Request::is('admin/product*') ||  Request::is('admin/category*') ||  Request::is('admin/supplier*')  ? 'active' : '' }}">
+						<i class="nav-icon fa fa-pie-chart"></i>
+						<p>
+							{{ trans('sidebar.menu.Produit') }}
+							<i class="right fa fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="{{ route('admin.category.create') }}" class="nav-link {{ Request::is('admin/category/create')? 'active' : '' }}">
+								<i class="fa fa-circle-o nav-icon"></i>
+								<p>{{ trans('sidebar.menu.Ajoutercategoriest') }}</p>
+
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ route('admin.category.index') }}" class="nav-link {{ Request::is('admin/category') ? 'active' : '' }}">
+								<i class="fa fa-circle-o nav-icon"></i>
+								<p>{{ trans('sidebar.menu.Categories') }}</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ route('admin.supplier.create') }}" class="nav-link {{ Request::is('admin/supplier/create') ? 'active' : '' }}">
+								<i class="fa fa-circle-o nav-icon"></i>
+
+								{{ trans('sidebar.menu.AjouterFournisseur') }}
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ route('admin.supplier.index') }}" class="nav-link {{ Request::is('admin/supplier') ? 'active' : '' }}">
+								<i class="fa fa-circle-o nav-icon"></i>
+								<p>{{ trans('sidebar.menu.Fournisseurs') }}</p>
+
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ route('admin.product.create') }}" class="nav-link {{ Request::is('admin/product/create') ? 'active' : '' }}">
+								<i class="fa fa-circle-o nav-icon"></i>
+								<p>{{ trans('sidebar.menu.AjouterProduit') }}</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ route('admin.product.index') }}" class="nav-link {{ Request::is('admin/product') ? 'active' : '' }}">
+								<i class="fa fa-circle-o nav-icon"></i>
+								<p> {{ trans('sidebar.menu.Produits') }}</p>
+							</a>
+						</li>
+
 					</ul>
 				</li>
 				<li class="nav-item has-treeview {{ Request::is('admin/customer*') ? 'menu-open' : '' }}">
 					<a href="#" class="nav-link {{ Request::is('admin/customer*') ? 'active' : '' }}">
 						<i class="nav-icon fa fa-pie-chart"></i>
 						<p>
-							Customer
+							{{ trans('sidebar.menu.Clients') }}
+
 							<i class="right fa fa-angle-left"></i>
 						</p>
 					</a>
@@ -150,69 +225,26 @@
 						<li class="nav-item">
 							<a href="{{ route('admin.customer.create') }}" class="nav-link {{ Request::is('admin/customer/create') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>Add Customer</p>
+								<p>{{ trans('sidebar.menu.AjouterClient') }}</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="{{ route('admin.customer.index') }}" class="nav-link {{ Request::is('admin/customer') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>All Customer</p>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item has-treeview {{ Request::is('admin/supplier*') ? 'menu-open' : '' }}">
-					<a href="#" class="nav-link {{ Request::is('admin/supplier*') ? 'active' : '' }}">
-						<i class="nav-icon fa fa-pie-chart"></i>
-						<p>
-							Supplier
-							<i class="right fa fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="{{ route('admin.supplier.create') }}" class="nav-link {{ Request::is('admin/supplier/create') ? 'active' : '' }}">
-								<i class="fa fa-circle-o nav-icon"></i>
-								<p>Add Supplier</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{ route('admin.supplier.index') }}" class="nav-link {{ Request::is('admin/supplier') ? 'active' : '' }}">
-								<i class="fa fa-circle-o nav-icon"></i>
-								<p>All Supplier</p>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item has-treeview {{ Request::is('admin/advanced_salary*') ? 'menu-open' : '' }}">
-					<a href="#" class="nav-link {{ Request::is('admin/advanced_salary*') ? 'active' : '' }}">
-						<i class="nav-icon fa fa-pie-chart"></i>
-						<p>
-							Advanced Salary (EMP)
-							<i class="right fa fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="{{ route('admin.advanced_salary.create') }}" class="nav-link {{ Request::is('admin/advanced_salary/create') ? 'active' : '' }}">
-								<i class="fa fa-circle-o nav-icon"></i>
-								<p>Add Advanced Salary</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{ route('admin.advanced_salary.index') }}" class="nav-link {{ Request::is('admin/advanced_salary') ? 'active' : '' }}">
-								<i class="fa fa-circle-o nav-icon"></i>
-								<p>All Advanced Salary</p>
+
+								<p>{{ trans('sidebar.menu.clientslist') }}</p>
 							</a>
 						</li>
 					</ul>
 				</li>
 
+
+
 				<li class="nav-item has-treeview {{ Request::is('admin/salary*') ? 'menu-open' : '' }}">
 					<a href="#" class="nav-link {{ Request::is('admin/salary*') ? 'active' : '' }}">
 						<i class="nav-icon fa fa-pie-chart"></i>
 						<p>
-							Salary (EMP)
+							  {{ trans('sidebar.menu.Salaire') }}
 							<i class="right fa fa-angle-left"></i>
 						</p>
 					</a>
@@ -220,69 +252,26 @@
 						<li class="nav-item">
 							<a href="{{ route('admin.salary.index') }}" class="nav-link {{ Request::is('admin/salary') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>Pay Salary</p>
+								<p> {{ trans('sidebar.menu.PayerSalaire') }}</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="{{ route('admin.salary.create') }}" class="nav-link {{ Request::is('admin/salary/create') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>All Paid Salary</p>
+
+								<p>  {{ trans('sidebar.menu.paymentsdesalaire') }}</p>
 							</a>
 						</li>
 					</ul>
 				</li>
 
-				<li class="nav-item has-treeview {{ Request::is('admin/category*') ? 'menu-open' : '' }}">
-					<a href="#" class="nav-link {{ Request::is('admin/category*') ? 'active' : '' }}">
-						<i class="nav-icon fa fa-pie-chart"></i>
-						<p>
-							Category
-							<i class="right fa fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="{{ route('admin.category.create') }}" class="nav-link {{ Request::is('admin/category/create') ? 'active' : '' }}">
-								<i class="fa fa-circle-o nav-icon"></i>
-								<p>Add Category</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{ route('admin.category.index') }}" class="nav-link {{ Request::is('admin/category') ? 'active' : '' }}">
-								<i class="fa fa-circle-o nav-icon"></i>
-								<p>All Category</p>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item has-treeview {{ Request::is('admin/product*') ? 'menu-open' : '' }}">
-					<a href="#" class="nav-link {{ Request::is('admin/product*') ? 'active' : '' }}">
-						<i class="nav-icon fa fa-pie-chart"></i>
-						<p>
-							Product
-							<i class="right fa fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="{{ route('admin.product.create') }}" class="nav-link {{ Request::is('admin/product/create') ? 'active' : '' }}">
-								<i class="fa fa-circle-o nav-icon"></i>
-								<p>Add Product</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{ route('admin.product.index') }}" class="nav-link {{ Request::is('admin/product') ? 'active' : '' }}">
-								<i class="fa fa-circle-o nav-icon"></i>
-								<p>All Products</p>
-							</a>
-						</li>
-					</ul>
-				</li>
+
 				<li class="nav-item has-treeview {{ Request::is('admin/expense*') ? 'menu-open' : '' }}">
 					<a href="#" class="nav-link {{ Request::is('admin/expense*') ? 'active' : '' }}">
 						<i class="nav-icon fa fa-pie-chart"></i>
 						<p>
-							Expense
+					  {{ trans('sidebar.menu.Frais') }}
+
 							<i class="right fa fa-angle-left"></i>
 						</p>
 					</a>
@@ -290,31 +279,33 @@
 						<li class="nav-item">
 							<a href="{{ route('admin.expense.create') }}" class="nav-link {{ Request::is('admin/expense/create') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>Add Expense</p>
+								<p>{{ trans('sidebar.menu.AjouterFrais') }}</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="{{ route('admin.expense.today') }}" class="nav-link {{ Request::is('admin/expense-today') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>Today Expense</p>
+								<p>{{ trans('sidebar.menu.Fraisjounaliee') }}</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="{{ route('admin.expense.month') }}" class="nav-link {{ Request::is('admin/expense-month*') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>Monthly Expense</p>
+								<p> {{ trans('sidebar.menu.Fraismensuelle') }}</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="{{ route('admin.expense.yearly') }}" class="nav-link {{ Request::is('admin/expense-yearly*') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>Yearly Expense</p>
+
+								<p> {{ trans('sidebar.menu.Fraisannuels') }}</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="{{ route('admin.expense.index') }}" class="nav-link {{ Request::is('admin/expense') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>All Expense</p>
+								<p> {{ trans('sidebar.menu.ToutesFrais') }}</p>
+
 							</a>
 						</li>
 					</ul>
@@ -324,7 +315,8 @@
 					<a href="#" class="nav-link {{ Request::is('admin/order*') ? 'active' : '' }}">
 						<i class="nav-icon fa fa-pie-chart"></i>
 						<p>
-							Order
+							{{ trans('sidebar.menu.Commande') }}
+
 							<i class="right fa fa-angle-left"></i>
 						</p>
 					</a>
@@ -332,13 +324,14 @@
 						<li class="nav-item">
 							<a href="{{ route('admin.order.pending') }}" class="nav-link {{ Request::is('admin/order/pending') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>Pending Orders</p>
+								<p> {{ trans('sidebar.menu.Commandeenattente') }}</p>
+
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="{{ route('admin.order.approved') }}" class="nav-link {{ Request::is('admin/order/approved') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>Approved Orders</p>
+								<p>{{ trans('sidebar.menu.Commandeapprouvees') }}</p>
 							</a>
 						</li>
 					</ul>
@@ -348,7 +341,8 @@
 					<a href="#" class="nav-link {{ Request::is('admin/sales*') ? 'active' : '' }}">
 						<i class="nav-icon fa fa-pie-chart"></i>
 						<p>
-							Sales Report
+							{{ trans('sidebar.menu.Rapportdesventes') }}
+
 							<i class="right fa fa-angle-left"></i>
 						</p>
 					</a>
@@ -356,38 +350,32 @@
 						<li class="nav-item">
 							<a href="{{ route('admin.sales.today') }}" class="nav-link {{ Request::is('admin/sales-today') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>Today's Report</p>
+								<p> {{ trans('sidebar.menu.Rapportjournalier') }}</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="{{ route('admin.sales.monthly') }}" class="nav-link {{ Request::is('admin/sales-monthly*') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>Monthly Report</p>
+
+								<p> {{ trans('sidebar.menu.Rapportmensuel') }}</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="{{ route('admin.sales.total') }}" class="nav-link {{ Request::is('admin/sales-total') ? 'active' : '' }}">
 								<i class="fa fa-circle-o nav-icon"></i>
-								<p>Total Sales</p>
+								<p> {{ trans('sidebar.menu.Ventestotales') }}</p>
 							</a>
 						</li>
 					</ul>
 				</li>
 
-				<li class="nav-header">MENU</li>
-				<li class="nav-item has-treeview">
-					<a href="{{ route('admin.setting.index') }}" class="nav-link {{ Request::is('admin/setting') ? 'active' : '' }}">
-						<i class="nav-icon fa fa-server"></i>
-						<p>
-							Setting
-						</p>
-					</a>
-				</li>
+
 				<li class="nav-item">
 					<a class="nav-link" href="{{ route('logout') }}"
 					   onclick="event.preventDefault();
 					   document.getElementById('logout-form').submit();">
-						<i class="nav-icon fa fa-sign-out"></i> Logout
+						<i class="nav-icon fa fa-sign-out"></i>
+						 {{ trans('sidebar.menu.Sedeconnecter') }}
 					</a>
 					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 						@csrf

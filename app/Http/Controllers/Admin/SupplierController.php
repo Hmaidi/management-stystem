@@ -51,7 +51,7 @@ class SupplierController extends Controller
             'address' => 'required',
             'city' => 'required',
             'photo' => 'required | image',
-            'type' => 'required | integer',
+
         ];
 
         $validation = Validator::make($inputs, $rules);
@@ -83,7 +83,7 @@ class SupplierController extends Controller
         $supplier->phone = $request->input('phone');
         $supplier->address = $request->input('address');
         $supplier->city = $request->input('city');
-        $supplier->type = $request->input('type');
+
         $supplier->shop_name = $request->input('shop_name');
         $supplier->account_holder = $request->input('account_holder');
         $supplier->account_number = $request->input('account_number');
@@ -135,7 +135,7 @@ class SupplierController extends Controller
             'address' => 'required',
             'city' => 'required',
             'photo' => 'image',
-            'type' => 'required | integer',
+
         ];
 
         $validation = Validator::make($inputs, $rules);
@@ -173,7 +173,7 @@ class SupplierController extends Controller
         $supplier->phone = $request->input('phone');
         $supplier->address = $request->input('address');
         $supplier->city = $request->input('city');
-        $supplier->type = $request->input('type');
+
         $supplier->shop_name = $request->input('shop_name');
         $supplier->account_holder = $request->input('account_holder');
         $supplier->account_number = $request->input('account_number');

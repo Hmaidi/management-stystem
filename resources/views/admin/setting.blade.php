@@ -64,6 +64,10 @@
                                                 <label>Company Address</label>
                                                 <input type="text" class="form-control" name="address" value="{{ $setting->address }}" placeholder="Enter Address">
                                             </div>
+                                            <div class="form-group">
+                                                <label>Currency</label>
+                                                <input type="text" class="form-control" name="Currency" value="{{ $setting->Currency }}" placeholder="Currency">
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -87,6 +91,11 @@
                                             <div class="form-group">
                                                 <label>Company Zip Code</label>
                                                 <input type="text" class="form-control" name="zip_code" value="{{ $setting->zip_code }}" placeholder="Enter Zip Code">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>number of digits</label>
+                                                <input type="text" class="form-control" name="numberofdigits" value="{{ $setting->numberofdigits }}" placeholder="numberofdigits">
                                             </div>
                                         </div>
                                     </div>

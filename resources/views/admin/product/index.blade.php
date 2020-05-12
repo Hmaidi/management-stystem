@@ -17,8 +17,8 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 offset-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Products</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"> {{ trans('global.Dashboard') }}</a></li>
+                            <li class="breadcrumb-item active">Produits</li>
                         </ol>
                     </div>
                 </div>
@@ -34,45 +34,29 @@
                         <!-- general form elements -->
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">PRODUCTS LISTS</h3>
+                                <h3 class="card-title">Liste des produits</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped text-center table-responsive-xl">
                                     <thead>
                                     <tr>
-                                        <th>Serial</th>
-                                        <th>Name</th>
+                                        <th>Matricule</th>
+                                        <th>Nom</th>
                                         <th>Image</th>
-                                        <th>Category</th>
-                                        <th>Supplier</th>
+                                        <th>Catégorie</th>
+                                        <th>Fornisseur</th>
                                         <th>Code</th>
-                                        <th>Garage</th>
-                                        <th>Route</th>
-                                        <th>Buying Date</th>
-                                        <th>Expire Date</th>
-                                        <th>Buying Price</th>
-                                        <th>Selling Price</th>
+
+
+                                        <th>Date d' achat</th>
+                                        <th>Date d'expiration</th>
+                                        <th>Prix d'achat</th>
+                                        <th>Prix ​​de vente</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Serial</th>
-                                        <th>Name</th>
-                                        <th>Image</th>
-                                        <th>Category</th>
-                                        <th>Supplier</th>
-                                        <th>Code</th>
-                                        <th>Garage</th>
-                                        <th>Route</th>
-                                        <th>Buying Date</th>
-                                        <th>Expire Date</th>
-                                        <th>Buying Price</th>
-                                        <th>Selling Price</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                    </tfoot>
+
                                     <tbody>
                                     @foreach($products as $key => $product)
                                         <tr>
@@ -84,8 +68,8 @@
                                             <td>{{ $product->category->name }}</td>
                                             <td>{{ $product->supplier->name }}</td>
                                             <td>{{ $product->code }}</td>
-                                            <td>{{ $product->garage }}</td>
-                                            <td>{{ $product->route }}</td>
+
+
                                             <td>{{ $product->buying_date->toFormattedDateString() }}</td>
                                             <td>{{ $product->expire_date->toFormattedDateString() }}</td>
                                             <td>{{ number_format($product->buying_price, 2) }}</td>
@@ -141,7 +125,7 @@
     <script src="{{ asset('assets/backend/plugins/fastclick/fastclick.js') }}"></script>
 
     <!-- Sweet Alert Js -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.29.1/dist/sweetalert2.all.min.js"></script>
+<script src="{{ asset('assets/backend/js/sweetalert2.all.min.js') }}"></script>
 
 
     <script>
@@ -168,12 +152,12 @@
             })
 
             swalWithBootstrapButtons({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
+                title: '{{ trans('global.Areyousure')  }}',
+                text: "{{ trans('global.NotreturntoThis')  }}",
+                type: '{{ trans('global.Attention')  }}',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: '{{ trans('global.deleteThis')  }}',
+                cancelButtonText: '{{ trans('global.NoCancal')  }}',
                 reverseButtons: true
             }).then((result) => {
                 if (result.value) {
@@ -184,9 +168,9 @@
                     result.dismiss === swal.DismissReason.cancel
                 ) {
                     swalWithBootstrapButtons(
-                        'Cancelled',
-                        'Your data is safe :)',
-                        'error'
+                        '{{ trans('global.Cancelled')  }}',
+                        '{{ trans('global.Yourdataissafe')  }}',
+                        '{{ trans('global.errour')  }}'
                     )
                 }
             })

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Expense;
 use App\Order;
+use App\Setting;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +26,8 @@ class DashboardController extends Controller
         $previous_year = Order::whereYear('created_at', date('Y', strtotime('-1 year')))->get();
 
         $sales = Order::all();
+        $settings = Setting::all()->first();
+
 
         $today_expenses = Expense::whereDate('created_at', $today_date)->get();
         $yesterday_expenses = Expense::whereDate('created_at', date('Y-m-d', strtotime('-1 day')))->get();
@@ -54,6 +57,8 @@ class DashboardController extends Controller
 
 
 
-        return view('admin.dashboard', compact('today','yesterday' ,'month','previous_month', 'year', 'previous_year', 'sales', 'today_expenses', 'yesterday_expenses', 'month_expenses', 'previous_month_expenses', 'year_expenses', 'previous_year_expenses', 'expenses', 'current_sales', 'current_expenses'));
+        return view('admin.dashboard', compact('today','yesterday' ,'month','previous_month', 'year',
+            'previous_year', 'sales', 'today_expenses', 'yesterday_expenses', 'month_expenses', 'previous_month_expenses',
+            'year_expenses', 'previous_year_expenses', 'expenses', 'current_sales', 'current_expenses','settings'));
     }
 }

@@ -1,6 +1,17 @@
 <?php
 
 return [
+
+     'Dashboard'=>                            'page d\'accueil',
+    'Areyousure'=>                            'Êtes-vous sûr',
+    'NotreturntoThis'=>                            'Vous ne pourrez pas revenir sur cela!',
+    'Attention'=>                            'Attention',
+    'NoCancal'=>                            'Non, annule!',
+    'deleteThis'                              => 'Oui, supprimez-le!',
+    'Cancelled'                              => 'Annulé',
+    'Create' => 'Ajouter ',
+    'error'                              => 'errour',
+    'Yourdataissafe'                              => 'Vos données sont en sécurité!',
     'actions'                              => 'Actions',
     'add'                                  => 'Add',
     'allRightsReserved'                    => 'All rights reserved.',

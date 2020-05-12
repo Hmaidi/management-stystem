@@ -67,12 +67,12 @@
                                     @foreach($pendings as $key => $order)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ $order->customer->name }}</td>
-                                            <td>{{ $order->created_at->toFormattedDateString() }}</td>
-                                            <td>{{ $order->total_products }}</td>
-                                            <td>{{ $order->total }}</td>
-                                            <td>{{ $order->payment_status }}</td>
-                                            <td><span class="badge badge-warning">{{ $order->order_status }}</span></td>
+                                            <td>{{ $order->customer->name  ?? ''}}</td>
+                                            <td>{{ $order->created_at->toFormattedDateString() ?? '' }}</td>
+                                            <td>{{ $order->total_products ?? '' }}</td>
+                                            <td>{{ $order->total  ?? ''}}</td>
+                                            <td>{{ $order->payment_status  ?? ''}}</td>
+                                            <td><span class="badge badge-warning">{{ $order->order_status ?? '' }}</span></td>
 
                                             <td>
                                                 <a href="{{ route('admin.pos.show', $order->id) }}" class="btn btn-success">

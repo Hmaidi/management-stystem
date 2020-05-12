@@ -41,40 +41,23 @@
                                 <table id="example1" class="table table-bordered table-striped text-center">
                                     <thead>
                                     <tr>
-                                        <th>Serial</th>
-                                        <th>Name</th>
-                                        <th>Image</th>
+                                        <th>Matricule</th>
+                                        <th>Nom</th>
+                                        <th>Photo</th>
                                         <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Address</th>
-                                        <th>City</th>
-                                        <th>Type</th>
-                                        <th>Shop Name</th>
-                                        <th>Account Holder</th>
-                                        <th>Account Number</th>
-                                        <th>Bank Name</th>
-                                        <th>Bank Branch</th>
+                                        <th>Téléphone</th>
+                                        <th>Addresse</th>
+                                        <th>Ville</th>
+
+                                        <th>Nom de la societé</th>
+
+                                        <th> Numéro de compte</th>
+                                        <th>Nom de banque</th>
+                                        <th>Agence bancaire</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Serial</th>
-                                        <th>Name</th>
-                                        <th>Image</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Address</th>
-                                        <th>City</th>
-                                        <th>Type</th>
-                                        <th>Shop Name</th>
-                                        <th>Account Holder</th>
-                                        <th>Account Number</th>
-                                        <th>Bank Name</th>
-                                        <th>Bank Branch</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                    </tfoot>
+
                                     <tbody>
                                     @foreach($suppliers as $key => $supplier)
                                         <tr>
@@ -87,19 +70,9 @@
                                             <td>0{{ $supplier->phone }}</td>
                                             <td>{{ $supplier->address }}</td>
                                             <td>{{ $supplier->city }}</td>
-                                            <td>
-                                                @if($supplier->type == 1)
-                                                    {{ 'Distributor' }}
-                                                @elseif($supplier->type == 2)
-                                                    {{ 'Whole Seller' }}
-                                                @elseif($supplier->type == 3)
-                                                    {{ 'Brochure' }}
-                                                @else
-                                                    {{ 'None' }}
-                                                @endif
-                                            </td>
+
                                             <td>{{ $supplier->shop_name }}</td>
-                                            <td>{{ $supplier->account_holder }}</td>
+
                                             <td>{{ $supplier->account_number }}</td>
                                             <td>{{ $supplier->bank_name }}</td>
                                             <td>{{ $supplier->bank_branch }}</td>
@@ -181,12 +154,12 @@
             })
 
             swalWithBootstrapButtons({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
+                title: '{{ trans('global.Areyousure')  }}',
+                text: "{{ trans('global.NotreturntoThis')  }}",
+                type: '{{ trans('global.Attention')  }}',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: '{{ trans('global.deleteThis')  }}',
+                cancelButtonText: '{{ trans('global.NoCancal')  }}',
                 reverseButtons: true
             }).then((result) => {
                 if (result.value) {
@@ -197,9 +170,9 @@
                     result.dismiss === swal.DismissReason.cancel
                 ) {
                     swalWithBootstrapButtons(
-                        'Cancelled',
-                        'Your data is safe :)',
-                        'error'
+                        '{{ trans('global.Cancelled')  }}',
+                        '{{ trans('global.Yourdataissafe')  }}',
+                        '{{ trans('global.errour')  }}'
                     )
                 }
             })

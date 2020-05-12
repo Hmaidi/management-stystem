@@ -86,6 +86,8 @@ class SettingController extends Controller
           'city' => 'required',
           'country' => 'required',
           'zip_code' => 'required',
+            'Currency' => 'required',
+            'numberofdigits' => 'required',
           'logo' => 'image | nullable',
         ];
 
@@ -132,6 +134,8 @@ class SettingController extends Controller
         $setting->mobile = $request->input('mobile');
         $setting->zip_code = $request->input('zip_code');
         $setting->country = $request->input('country');
+        $setting->Currency = $request->input('Currency');
+        $setting->numberofdigits = $request->input('numberofdigits');
         $setting->logo = $imageName;
         $setting->save();
 

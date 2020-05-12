@@ -16,8 +16,8 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 offset-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Create Category</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"> {{ trans('global.Dashboard') }}</a></li>
+                            <li class="breadcrumb-item active">{{ trans('categorie.category.Create') }} {{ trans('categorie.category.Category') }}</li>
                         </ol>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Create Category</h3>
+                                <h3 class="card-title">{{ trans('categorie.category.Create') }} {{ trans('categorie.category.Category') }}</h3>
                             </div>
                             <!-- /.card-header -->
 
@@ -42,17 +42,24 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Category Name</label>
-                                                <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Enter Category Name">
+                                                <label> {{ trans('categorie.category.Name') }} {{ trans('categorie.category.Category') }}</label>
+                                                <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="créer une catégorie">
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label> {{ trans('categorie.category.Create') }} {{ trans('categorie.category.depot')  }}</label>
+                                                <input type="text" class="form-control" name="garage" value="{{ old('garage') }}" placeholder="Ajouter un dépot">
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary float-md-right">Create Category</button>
+                                    <button type="submit" class="btn btn-primary float-md-right">{{ trans('categorie.category.Create') }} {{ trans('categorie.category.Category') }}</button>
                                 </div>
                             </form>
                         </div>

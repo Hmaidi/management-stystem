@@ -19,6 +19,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::latest()->get();
+
         return view('admin.category.index', compact('categories'));
     }
 
@@ -54,6 +55,7 @@ class CategoryController extends Controller
         $category = new Category();
         $category->name = $request->input('name');
         $category->slug = Str::slug($request->input('name'));
+        $category->garage = Str::slug($request->input('garage'));
         $category->save();
 
         Toastr::success('Category successfully created', 'Success');
@@ -104,6 +106,7 @@ class CategoryController extends Controller
 
         $category->name = $request->input('name');
         $category->slug = Str::slug($request->input('name'));
+        $category->garage = Str::slug($request->input('garage'));
         $category->save();
 
         Toastr::success('Category successfully updated', 'Success');

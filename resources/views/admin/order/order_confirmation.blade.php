@@ -53,27 +53,29 @@
                                     <address>
                                         <strong>Admin, {{ config('app.name') }}</strong><br>
                                         {{ $company->address }}<br>
-                                        {{ $company->city }} - {{ $company->zip_code }}, {{ $company->country }}<br>
-                                        Phone: (+880) {{ $company->mobile }} {{ $company->phone !== null ? ', +880'.$company->phone : ''  }}<br>
-                                        Email: {{ $company->email }}
+                                        {{ $company->city }} - {{ $company->zip_code ?? '' }}, {{ $company->country  ?? ''}}<br>
+                                        Phone: (+880) {{ $company->mobile ?? '' }} {{ $company->phone !== null ? ', +880'.$company->phone : ''  }}<br>
+                                        Email: {{ $company->email ?? '' }}
+
                                     </address>
                                 </div>
                                 <!-- /.col -->
                                 <div class="col-sm-4 invoice-col">
                                     To
                                     <address>
-                                        <strong>{{ $order->customer->name }}</strong><br>
-                                        {{ $order->customer->address }}<br>
-                                        {{ $order->customer->city }}<br>
-                                        Phone: (+880) {{ $order->customer->phone }}<br>
-                                        Email: {{ $order->customer->email }}
+                                        <strong>{{ $order->customer->name ?? '' }}</strong><br>
+                                        {{ $order->customer->address  ?? ''}}<br>
+                                        {{ $order->customer->city  ?? ''}}<br>
+                                        Phone: (+880) {{ $order->customer->phone ?? ''}}<br>
+                                        Email: {{ $order->customer->email ?? ''}}
                                     </address>
                                 </div>
                                 <!-- /.col -->
                                 <div class="col-sm-4 invoice-col">
-                                    <b>Invoice #IMS-{{ $order->created_at->format('Ymd') }}{{ $order->id }}</b><br><br>
+                                    <b>Invoice #IMS-{{ $order->created_at->format('Ymd') ?? ''}}{{ $order->id ?? ''}}</b><br><br>
                                     <b>Order ID:</b> {{ str_pad($order->id,9,"0",STR_PAD_LEFT) }}<br>
-                                    <b>Order Status:</b> <span class="badge {{ $order->order_status == 'approved' ? 'badge-success' : 'badge-warning'  }}">{{ $order->order_status }}</span><br>
+                                    <b>Order Status:</b>
+                                    <span class="badge {{ $order->order_status == 'approved' ? 'badge-success' : 'badge-warning'  }}">{{ $order->order_status ?? ''}}</span><br>
                                     <b>Account:</b> {{ $order->customer->account_number }}
                                 </div>
                                 <!-- /.col -->
@@ -97,12 +99,12 @@
                                         <tbody>
                                             @foreach($order_details as $order_detail)
                                                 <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $order_detail->product->name }}</td>
-                                                    <td>{{ $order_detail->product->code }}</td>
-                                                    <td>{{ $order_detail->quantity }}</td>
-                                                    <td>{{ $unit_cost = number_format($order_detail->unit_cost, 2) }}</td>
-                                                    <td>{{ number_format($unit_cost * $order_detail->quantity, 2) }}</td>
+                                                    <td>{{ $loop->iteration ?? ''}}</td>
+                                                    <td>{{ $order_detail->product->name ?? ''}}</td>
+                                                    <td>{{ $order_detail->product->code ?? ''}}</td>
+                                                    <td>{{ $order_detail->quantity ?? ''}}</td>
+                                                    <td>{{ $unit_cost = number_format($order_detail->unit_cost, $company->numberofdigits ) }}</td>
+                                                    <td>{{ number_format($unit_cost * $order_detail->quantity, $company->numberofdigits) }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -123,11 +125,11 @@
                                             </tr>
                                             <tr>
                                                 <th>Pay</th>
-                                                <td class="text-right">{{ number_format($order->pay, 2) }}</td>
+                                                <td class="text-right">{{ number_format($order->pay, $company->numberofdigits) }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Due</th>
-                                                <td class="text-right">{{ number_format($order->due, 2) }}</td>
+                                                <td class="text-right">{{ number_format($order->due, $company->numberofdigits) }}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -138,15 +140,15 @@
                                         <table class="table">
                                             <tr>
                                                 <th style="width:50%">Subtotal:</th>
-                                                <td class="text-right">{{ number_format($order->sub_total, 2) }}</td>
+                                                <td class="text-right">{{ number_format($order->sub_total, $company->numberofdigits) }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Tax (21%)</th>
-                                                <td class="text-right">{{ number_format($order->vat, 2) }}</td>
+                                                <td class="text-right">{{ number_format($order->vat, $company->numberofdigits ) }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Total:</th>
-                                                <td class="text-right">{{ round($order->total) }} Taka</td>
+                                                <td class="text-right">{{ round($order->total) }} {{ $company->Currency }}</td>
                                             </tr>
                                         </table>
                                     </div>
