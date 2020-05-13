@@ -51,6 +51,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     Route::resource('employee', 'EmployeeController');
+    Route::resource('projet', 'ProjetController');
+
     Route::resource('customer', 'CustomerController');
     Route::resource('attendance', 'AttendanceController');
     Route::put('attendance/{attendance?}', 'AttendanceController@att_update')->name('attendance.att_update');
@@ -86,5 +88,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('print/{customer_id}', 'InvoiceController@print')->name('invoice.print');
     Route::get('order-print/{order_id}', 'InvoiceController@order_print')->name('invoice.order_print');
     Route::post('invoice-final', 'InvoiceController@final_invoice')->name('invoice.final_invoice');
+
+
+
+
+
 
 });

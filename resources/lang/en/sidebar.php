@@ -39,6 +39,10 @@ return [
         'Ajouter' => 'Ajouter',
         'Categories' => 'Catégories',
         'Produits' => 'Produits',
+        'projet' => 'projet',
+        'tousprojet' => 'Projets',
+        'addprojet' => 'Ajouter projet',
+
         'Categorie' => 'Catégorie',
         'AjouterProduit' => 'Ajouter produit',
         'Ajoutercategoriest' => 'Ajouter Catégories',

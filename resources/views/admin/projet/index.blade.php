@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title', 'Employees')
+@section('title', 'Projet')
 
 @push('css')
     <!-- DataTables -->
@@ -18,7 +18,7 @@
                     <div class="col-sm-6 offset-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Employee</li>
+                            <li class="breadcrumb-item active"> {{ trans('projet.Projets')  }}</li>
                         </ol>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                         <!-- general form elements -->
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">EMPLOYEES LISTS</h3>
+                                <h3 class="card-title">{{ trans('projet.Projets')  }}</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -53,46 +53,33 @@
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Serial</th>
-                                        <th>Name</th>
-                                        <th>Image</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Address</th>
-                                        <th>City</th>
-                                        <th>Salary</th>
-                                        <th>Vacation</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                    </tfoot>
+
                                     <tbody>
-                                    @foreach($employees as $key => $employee)
+                                    @foreach($projets as $key => $projet)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ $employee->name }}</td>
+                                            <td>{{ $projet->name }}</td>
                                             <td>
-                                                <img class="img-rounded" style="height:35px; width: 35px;" src="{{ URL::asset("storage/employee/".$employee->photo) }}" alt="{{ $employee->name }}">
+                                                <img class="img-rounded" style="height:35px; width: 35px;" src="{{ URL::asset("storage/projet/".$projet->photo) }}" alt="{{ $projet->name }}">
                                             </td>
-                                            <td>{{ $employee->email }}</td>
-                                            <td>0{{ $employee->phone }}</td>
-                                            <td>{{ $employee->address }}</td>
-                                            <td>{{ $employee->city }}</td>
-                                            <td>{{ $employee->salary }}</td>
-                                            <td>{{ $employee->vacation }}</td>
+                                            <td>{{ $projet->email }}</td>
+                                            <td>0{{ $projet->phone }}</td>
+                                            <td>{{ $projet->address }}</td>
+                                            <td>{{ $projet->city }}</td>
+                                            <td>{{ $projet->salary }}</td>
+                                            <td>{{ $projet->vacation }}</td>
                                             <td>
-                                                <a href="{{ route('admin.employee.show', $employee->id) }}" class="btn btn-success">
+                                                <a href="{{ route('admin.projet.show', $projet->id) }}" class="btn btn-success">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="{{ route('admin.employee.edit', $employee->id) }}" class="btn
+                                                <a href="{{ route('admin.projet.edit', $projet->id) }}" class="btn
 													btn-info">
                                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                 </a>
-                                                <button class="btn btn-danger" type="button" onclick="deleteItem({{ $employee->id }})">
+                                                <button class="btn btn-danger" type="button" onclick="deleteItem({{ $projet->id }})">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </button>
-                                                <form id="delete-form-{{ $employee->id }}" action="{{ route('admin.employee.destroy', $employee->id) }}" method="post"
+                                                <form id="delete-form-{{ $projet->id }}" action="{{ route('admin.projet.destroy', $projet->id) }}" method="post"
                                                       style="display:none;">
                                                     @csrf
                                                     @method('DELETE')
@@ -100,6 +87,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
+
                                     </tbody>
 
                                 </table>
@@ -132,7 +120,7 @@
     <script src="{{ asset('assets/backend/plugins/fastclick/fastclick.js') }}"></script>
 
     <!-- Sweet Alert Js -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.29.1/dist/sweetalert2.all.min.js"></script>
+<script src="{{ asset('assets/backend/js/sweetalert2.all.min.js') }}"></script>
 
 
     <script>

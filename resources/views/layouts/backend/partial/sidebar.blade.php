@@ -369,7 +369,37 @@
 					</ul>
 				</li>
 
+				<li class="nav-item has-treeview {{ Request::is('admin/rapport*') ? 'menu-open' : '' }}">
+					<a href="#" class="nav-link {{ Request::is('admin/rapport*') ? 'active' : '' }}">
+						<i class="nav-icon fa fa-pie-chart"></i>
+						<p>
+							{{ trans('sidebar.menu.Rapportdesventes') }}
 
+							<i class="right fa fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="{{ route('admin.sales.today') }}" class="nav-link {{ Request::is('admin/sales-today') ? 'active' : '' }}">
+								<i class="fa fa-circle-o nav-icon"></i>
+								<p> {{ trans('sidebar.menu.Rapportjournalier') }}</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ route('admin.sales.monthly') }}" class="nav-link {{ Request::is('admin/sales-monthly*') ? 'active' : '' }}">
+								<i class="fa fa-circle-o nav-icon"></i>
+
+								<p> {{ trans('sidebar.menu.Rapportmensuel') }}</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ route('admin.sales.total') }}" class="nav-link {{ Request::is('admin/sales-total') ? 'active' : '' }}">
+								<i class="fa fa-circle-o nav-icon"></i>
+								<p> {{ trans('sidebar.menu.Ventestotales') }}</p>
+							</a>
+						</li>
+					</ul>
+				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ route('logout') }}"
 					   onclick="event.preventDefault();
@@ -380,6 +410,34 @@
 					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 						@csrf
 					</form>
+				</li>
+				<li class="nav-item has-treeview {{ Request::is('admin/projet*') ? 'menu-open' : '' }}">
+					<a href="#" class="nav-link {{ Request::is('admin/projet*') ? 'active' : '' }}">
+						<i class="nav-icon fa fa-pie-chart"></i>
+						<p>
+
+							{{ trans('sidebar.menu.projet') }}
+							<i class="right fa fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="{{ route('admin.projet.create') }}" class="nav-link {{ Request::is('admin/projet/create') ? 'active' : '' }}">
+								<i class="fa fa-circle-o nav-icon"></i>
+								<p>
+									{{ trans('sidebar.menu.addprojet') }}
+								</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ route('admin.projet.index') }}" class="nav-link {{ Request::is('admin/projet') ? 'active' : '' }}">
+								<i class="fa fa-circle-o nav-icon"></i>
+								<p>
+									{{ trans('sidebar.menu.tousprojet') }}
+								</p>
+							</a>
+						</li>
+					</ul>
 				</li>
 
 			</ul>
