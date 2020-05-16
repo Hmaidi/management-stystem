@@ -32,9 +32,15 @@
                     <!-- left column -->
                     <div class="col-md-12">
                         <!-- general form elements -->
+
                         <div class="card">
                             <div class="card-header">
+
                                 <h3 class="card-title">PENDING ORDERS LISTS</h3>
+                                <a href="{{ route('admin.order.create') }}" class="btn btn-success float-right">
+                                    <i class="fa fa-credit-card"></i>
+                                    Creer commande
+                                </a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -51,18 +57,7 @@
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Serial</th>
-                                        <th>Name</th>
-                                        <th>Date</th>
-                                        <th>Quantity</th>
-                                        <th>Total</th>
-                                        <th>Payment Status</th>
-                                        <th>Order Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                    </tfoot>
+
                                     <tbody>
                                     @foreach($pendings as $key => $order)
                                         <tr>
@@ -119,7 +114,7 @@
     <script src="{{ asset('assets/backend/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
     <!-- FastClick -->
     <script src="{{ asset('assets/backend/plugins/fastclick/fastclick.js') }}"></script>
-<script src="{{ asset('assets/backend/plugins/sweetalert2.all.min.js') }}"></script>
+<script src="{{ asset('assets/backend/js/sweetalert2.all.min.js') }}"></script>
     <!-- Sweet Alert Js -->
 
 
@@ -139,39 +134,39 @@
     </script>
 
 
-    <script type="text/javascript">
-        function deleteItem(id) {
-            const swalWithBootstrapButtons = swal.mixin({
-                confirmButtonClass: 'btn btn-success',
-                cancelButtonClass: 'btn btn-danger',
-                buttonsStyling: false,
-            })
+<script type="text/javascript">
+    function deleteItem(id) {
+        const swalWithBootstrapButtons = swal.mixin({
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            buttonsStyling: false,
+        })
 
-            swalWithBootstrapButtons({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.value) {
-                    event.preventDefault();
-                    document.getElementById('delete-form-'+id).submit();
-                } else if (
-                    // Read more about handling dismissals
-                    result.dismiss === swal.DismissReason.cancel
-                ) {
-                    swalWithBootstrapButtons(
-                        'Cancelled',
-                        'Your data is safe :)',
-                        'error'
-                    )
-                }
-            })
+        swalWithBootstrapButtons({
+            title: '{{ trans('global.Areyousure')  }}',
+            text: "{{ trans('global.NotreturntoThis')  }}",
+            type: '{{ trans('global.Attention')  }}',
+            showCancelButton: true,
+            confirmButtonText: '{{ trans('global.deleteThis')  }}',
+            cancelButtonText: '{{ trans('global.NoCancal')  }}',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+            event.preventDefault();
+            document.getElementById('delete-form-'+id).submit();
+        } else if (
+            // Read more about handling dismissals
+        result.dismiss === swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons(
+                '{{ trans('global.Cancelled')  }}',
+                '{{ trans('global.Yourdataissafe')  }}',
+                '{{ trans('global.errour')  }}'
+            )
         }
-    </script>
+    })
+    }
+</script>
 
 
 

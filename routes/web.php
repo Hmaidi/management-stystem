@@ -71,6 +71,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::resource('pos', 'PosController');
 
+    Route::get('order/create', 'OrderDetailController@create')->name('order.create');
+
+    Route::post('order/store', 'OrderDetailController@store')->name('order.store');
+
     Route::get('order/show/{id}', 'OrderController@show')->name('order.show');
     Route::get('order/pending', 'OrderController@pending_order')->name('order.pending');
     Route::get('order/approved', 'OrderController@approved_order')->name('order.approved');

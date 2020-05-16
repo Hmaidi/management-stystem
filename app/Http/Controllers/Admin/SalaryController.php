@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 
 
 use App\Advanced_Salary;
 use App\Employee;
 use App\Salary;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class SalaryController extends Controller
@@ -32,7 +32,7 @@ class SalaryController extends Controller
      */
     public function create()
     {
-        return view('admin.salary.create');
+        //
     }
 
     /**

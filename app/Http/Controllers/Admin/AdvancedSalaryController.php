@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Advanced_Salary;
 use App\Employee;
-use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -23,7 +23,6 @@ class AdvancedSalaryController extends Controller
     public function index()
     {
         $advanced_salaries = Advanced_Salary::latest()->with('employee')->get();
-
         return view('admin.advanced_salary.index', compact('advanced_salaries'));
     }
 
@@ -61,7 +60,6 @@ class AdvancedSalaryController extends Controller
         }
 
         $advanced_salary = Advanced_Salary::where('employee_id', $request->employee_id)->where('month', $request->month)->where('year', $request->year)->first();
-
 
         if (!$advanced_salary)
         {

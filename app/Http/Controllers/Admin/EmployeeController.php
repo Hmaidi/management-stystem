@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Employee;
+use App\Advanced_Salary;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
@@ -22,7 +23,10 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = Employee::latest()->get();
-        return view('admin.employee.index', compact('employees'));
+
+        $advanced_Salarys = Advanced_Salary::all();
+
+        return view('admin.employee.index', compact('employees','advanced_Salarys'));
     }
 
     /**

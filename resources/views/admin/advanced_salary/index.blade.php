@@ -43,38 +43,30 @@
                                     <tr>
                                         <th>Serial</th>
                                         <th>Employee Name</th>
-                                        <th>Photo</th>
                                         <th>Month</th>
                                         <th>Year</th>
                                         <th>Salary</th>
                                         <th>Advanced Salary</th>
+                                        <th>Rest Salary</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Serial</th>
-                                        <th>Employee Name</th>
-                                        <th>Photo</th>
-                                        <th>Month</th>
-                                        <th>Year</th>
-                                        <th>Salary</th>
-                                        <th>Advanced Salary</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                    </tfoot>
+
                                     <tbody>
                                     @foreach($advanced_salaries as $key => $salary)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $salary->employee->name }}</td>
+                                          {{--
                                             <td>
                                                 <img width="50" height="50" src="{{ URL::asset('storage/employee/'. $salary->employee->photo) }}" alt="{{ $salary->employee->name }}">
                                             </td>
+                                            --}}
                                             <td>{{ ucfirst($salary->month) }}</td>
                                             <td>{{ $salary->year }}</td>
                                             <td>{{ $salary->employee->salary }}</td>
                                             <td>{{ $salary->advanced_salary }}</td>
+                                            <td>{{ $salary->employee->salary - $salary->advanced_salary ?? '' }}</td>
                                             <td>
                                                 <a href="{{ route('admin.advanced_salary.show', $salary->id) }}" class="btn btn-success">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
