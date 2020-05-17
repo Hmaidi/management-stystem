@@ -156,12 +156,12 @@
             })
 
             swalWithBootstrapButtons({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
+                title: '{{trans('global.Areyousure')}}',
+                text: "{{trans('global.NotreturntoThis')}}",
+                type: '{{trans('global.Attention')}}',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: '{{ trans('global.deleteThis')}}',
+                cancelButtonText: '{{ trans('global.NoCancal')}}',
                 reverseButtons: true
             }).then((result) => {
                 if (result.value) {
@@ -172,9 +172,9 @@
                     result.dismiss === swal.DismissReason.cancel
                 ) {
                     swalWithBootstrapButtons(
-                        'Cancelled',
-                        'Your data is safe :)',
-                        'error'
+                        '{{ trans('global.Cancelled')  }}',
+                        '{{ trans('global.Yourdataissafe')  }}',
+                        '{{ trans('global.errour')  }}'
                     )
                 }
             })

@@ -1,3 +1,8 @@
+<style>
+    #example1 tbody tr:nth-child(1){
+        display: none;
+    }
+</style>
 @extends('layouts.backend.app')
 
 @section('title', 'Approved Orders')
@@ -51,18 +56,7 @@
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Serial</th>
-                                        <th>Name</th>
-                                        <th>Date</th>
-                                        <th>Quantity</th>
-                                        <th>Total</th>
-                                        <th>Payment Status</th>
-                                        <th>Order Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                    </tfoot>
+
                                     <tbody>
                                     @foreach($approveds as $key => $order)
                                         <tr>
@@ -78,6 +72,14 @@
                                                 <a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-success">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                 </a>
+                                                <button class="btn btn-danger" type="button" onclick="deleteItem({{ $order->id }})">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </button>
+                                                <form id="delete-form-{{ $order->id }}" action="{{ route('admin.order.destroy', $order->id) }}" method="post"
+                                                      style="display:none;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -113,7 +115,8 @@
     <script src="{{ asset('assets/backend/plugins/fastclick/fastclick.js') }}"></script>
 
     <!-- Sweet Alert Js -->
-       <script src="{{ asset('assets/backend/plugins/sweetalert2.all.min.js') }}"></script>
+<script src="{{ asset('assets/backend/js/sweetalert2.all.min.js') }}"></script>
+
 
 
     <script>
@@ -140,12 +143,12 @@
             })
 
             swalWithBootstrapButtons({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
+                title: '{{ trans('global.Areyousure')  }}',
+                text: "{{ trans('global.NotreturntoThis')  }}",
+                type: '{{ trans('global.Attention')  }}',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: '{{ trans('global.deleteThis') }}',
+                cancelButtonText: '{{ trans('global.NoCancal') }}',
                 reverseButtons: true
             }).then((result) => {
                 if (result.value) {
@@ -156,9 +159,9 @@
                     result.dismiss === swal.DismissReason.cancel
                 ) {
                     swalWithBootstrapButtons(
-                        'Cancelled',
-                        'Your data is safe :)',
-                        'error'
+                        '{{ trans('global.Cancelled')  }}',
+                        '{{ trans('global.Yourdataissafe')  }}',
+                        '{{ trans('global.errour')  }}'
                     )
                 }
             })
