@@ -90,21 +90,21 @@
                                         <tr>
                                             <th>S.N</th>
                                             <th>Product Name</th>
-                                            <th>Product Code</th>
+
                                             <th>Quantity</th>
                                             <th>Unit Cost</th>
                                             <th>Subtotal</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($order_details as $order_detail)
+                                            @foreach($productsstocks as $order_detail)
                                                 <tr>
                                                     <td>{{ $loop->iteration ?? ''}}</td>
-                                                    <td>{{ $order_detail->product->name ?? ''}}</td>
-                                                    <td>{{ $order_detail->product->code ?? ''}}</td>
-                                                    <td>{{ $order_detail->quantity ?? ''}}</td>
-                                                    <td>{{ $unit_cost = number_format($order_detail->unit_cost, $company->numberofdigits ) }}</td>
-                                                    <td>{{ number_format($unit_cost * $order_detail->quantity, $company->numberofdigits) }}</td>
+                                                    <td>{{ $order_detail->name ?? ''}}</td>
+
+                                                    <td>{{ $order_detail->qty ?? ''}}</td>
+                                                    <td>{{ $unit_cost = number_format($order_detail->price, $company->numberofdigits ) }}</td>
+                                                    <td>{{ number_format($unit_cost * $order_detail->qty, $company->numberofdigits) }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 
 use App\Order;
 use App\Customer;
-use App\OrderDetail;
 use App\Product;
 use App\ProductStock;
 use Illuminate\Http\Request;
@@ -19,8 +18,14 @@ class OrderDetailController extends Controller
     {
         $customers=Customer::all();
         $products=Product::all();
-        $orders=Order::all()->last();
 
+        $orders=Order::all()->last();
+        if($orders){
+            $orders=$orders;
+        }
+        else{
+            $orders=0;
+        }
         return view('admin.order.create_Order', compact('customers','products','orders'));
     }
 
@@ -58,13 +63,15 @@ class OrderDetailController extends Controller
         $total_products=0;
 
         foreach ($request->addmore as $key => $value) {
+            $productsname=Product::all()->where('id','=',$value['name'])->first();
+
             $subTotal[$key]=$value['qty']*$value['price'];
             $Total[$key]  =  $subTotal[$key];
             $total=$total+$Total[$key];
             $total_products=$total_products+1;
 
             $ProductStocks = new ProductStock();
-            $ProductStocks->name = $value['name'];
+            $ProductStocks->name = $productsname->name;
             $ProductStocks->qty = $value['qty'];
             $ProductStocks->price =$value['price'];
             $ProductStocks->id_order =$request->input('OrderId');;
@@ -79,10 +86,10 @@ class OrderDetailController extends Controller
         $orders->customer_id = $request->input('customer_id');
         $orders->order_date = $request->input('order_date');
         $orders->total_products =$total_products;
-
+        $orders->sub_total =$total;
         $orders->payment_status = $request->input('payment_status');
         $orders->vat = $request->input('vat');
-        $orders->total = $total;
+        $orders->total = $total*$request->input('vat');
         $orders->order_status = $request->input('order_status');
         $orders->pay = $request->input('pay');
         $orders->due = $request->input('due');

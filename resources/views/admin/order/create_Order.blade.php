@@ -125,9 +125,10 @@
 
                                                 <td>
                                                     <select name="addmore[0][name]" class="form-control">
-                                                        <option value="" disabled selected>Choisir un fornisseur</option>
+                                                        <option value="" disabled selected>Choisir un produit</option>
                                                         @foreach($products as $product)
                                                             <option value="{{ $product->id }}">{{ $product->name }}</option>
+
                                                         @endforeach
                                                     </select>
                                                 </td>
@@ -145,7 +146,11 @@
                                 </div>
 
                                 <!-- /.card-body -->
+                                @if($orders)
                                  <input type="hidden" name="OrderId" value="{{$orders->id+1}}">
+                                @else
+                                    <input type="hidden" name="OrderId" value="1">
+                                @endif
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary float-md-right"> Enregistrer </button>
                                 </div>

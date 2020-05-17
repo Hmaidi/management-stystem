@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Expense;
 use App\Order;
 use App\OrderDetail;
+use App\product;
 use App\ProductStock;
 use App\Setting;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -22,12 +23,12 @@ class OrderController extends Controller
         $order = Order::with('customer')->where('id', $id)->first();
 
         //return $order;
+
         $order_details = OrderDetail::with('product')->where('order_id', $id)->get();
-        $productstock = ProductStock::all();
-        dd($productstock);
+        $productsstocks= ProductStock::with('product')->where('id_order', $id)->get();
         //return $order_details;
         $company = Setting::latest()->first();
-        return view('admin.order.order_confirmation', compact('order_details', 'order', 'company','productstock'));
+        return view('admin.order.order_confirmation', compact('order_details', 'order', 'company','productsstocks'));
     }
 
 

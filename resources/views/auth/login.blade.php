@@ -30,7 +30,7 @@
 
 <div class="login-box">
     <div class="login-logo">
-        <h1><b>Inventory Stock</b> Management</h1>
+        <h1><b>Systéme de Management </h1>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
@@ -53,7 +53,7 @@
 
             </div>
             <div class="form-group has-feedback">
-                <input type="password" name="password" class="form-control" placeholder="Password" value="{{ old('password') }}">
+                <input type="password" name="password" class="form-control btn-flat" placeholder="Password" value="{{ old('password') }}">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 
                 @if ($errors->has('password'))
@@ -63,14 +63,16 @@
                 @endif
 
             </div>
-            <div class="row">
-                <div class="col-xs-12">
+            <div class="form-group has-feedback">
+                <div class="social-auth-links text-center">
+
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+
                 </div>
                 <!-- /.col -->
             </div>
 
-            <div class="row">
+            <div class="form-group has-feedback">
                 <div class="col-xs-12">
                     <div class="checkbox icheck">
                         <label>
@@ -81,7 +83,7 @@
             </div>
         </form>
         <!-- /.social-auth-links -->
-        <div class="social-auth-links text-center">
+
             <p>- OR -</p>
             @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-fw fa-key"></i> Forgot Password ?</a>
