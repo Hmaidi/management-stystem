@@ -66,12 +66,13 @@ class OrderController extends Controller
         $order = Order::with('customer')->where('id', $order_id)->first();
         //return $order;
         $order_details = OrderDetail::with('product')->where('order_id', $order_id)->get();
+        $productsstocks= ProductStock::with('product')->where('id_order', $order_id)->get();
         //return $order_details;
         $company = Setting::latest()->first();
 
         set_time_limit(300);
 
-        $pdf = PDF::loadView('admin.order.pdf', ['order'=>$order, 'order_details'=> $order_details, 'company'=> $company]);
+        $pdf = PDF::loadView('admin.order.pdf', ['order'=>$order, 'order_details'=> $order_details, 'company'=> $company, 'productsstocks'=>$productsstocks]);
 
         $content = $pdf->download()->getOriginalContent();
 

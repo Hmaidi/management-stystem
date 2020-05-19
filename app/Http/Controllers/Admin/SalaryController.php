@@ -21,6 +21,7 @@ class SalaryController extends Controller
         $month = date('F', strtotime('-1 month'));
         $year = date('Y', strtotime('-1 month'));
         $advanced = Advanced_Salary::where('month', $month)->where('year', $year)->get();
+
         $employees = Employee::all();
         return view('admin.salary.index', compact('employees', 'advanced'));
     }

@@ -50,17 +50,7 @@
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Serial</th>
-                                        <th>Employee Name</th>
-                                        <th>Photo</th>
-                                        <th>Salary</th>
-                                        <th>Month</th>
-                                        <th>Advanced</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                    </tfoot>
+
                                     <tbody>
                                     @foreach($employees as $key => $employee)
                                         <tr>

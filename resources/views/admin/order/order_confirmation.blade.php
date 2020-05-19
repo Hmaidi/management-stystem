@@ -40,7 +40,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h4>
-                                        <i class="fa fa-globe"></i> {{ config('app.name') }}
+                                        <i class="fa fa-globe"></i>  {{ $company->name }}
                                         <small class="float-right">Date: {{ date('l, d-M-Y h:i:s A') }}</small>
                                     </h4>
                                 </div>
@@ -51,10 +51,10 @@
                                 <div class="col-sm-4 invoice-col">
                                     From
                                     <address>
-                                        <strong>Admin, {{ config('app.name') }}</strong><br>
+                                        <strong>  {{ $company->name }}</strong><br>
                                         {{ $company->address }}<br>
                                         {{ $company->city }} - {{ $company->zip_code ?? '' }}, {{ $company->country  ?? ''}}<br>
-                                        Phone: (+880) {{ $company->mobile ?? '' }} {{ $company->phone !== null ? ', +880'.$company->phone : ''  }}<br>
+                                        Phone: (+216) {{ $company->mobile ?? '' }} {{ $company->phone !== null ? ', (+216)'.$company->phone : ''  }}<br>
                                         Email: {{ $company->email ?? '' }}
 
                                     </address>
@@ -66,13 +66,13 @@
                                         <strong>{{ $order->customer->name ?? '' }}</strong><br>
                                         {{ $order->customer->address  ?? ''}}<br>
                                         {{ $order->customer->city  ?? ''}}<br>
-                                        Phone: (+880) {{ $order->customer->phone ?? ''}}<br>
+                                        Phone: (+216) {{ $order->customer->phone ?? ''}}<br>
                                         Email: {{ $order->customer->email ?? ''}}
                                     </address>
                                 </div>
                                 <!-- /.col -->
                                 <div class="col-sm-4 invoice-col">
-                                    <b>Invoice #IMS-{{ $order->created_at->format('Ymd') ?? ''}}{{ $order->id ?? ''}}</b><br><br>
+                                    <b>Commande N°  {{ $order->created_at->format('Ymd') ?? ''}}{{ $order->id ?? ''}}</b><br><br>
                                     <b>Order ID:</b> {{ str_pad($order->id,9,"0",STR_PAD_LEFT) }}<br>
                                     <b>Order Status:</b>
                                     <span class="badge {{ $order->order_status == 'approved' ? 'badge-success' : 'badge-warning'  }}">{{ $order->order_status ?? ''}}</span><br>
@@ -161,7 +161,7 @@
                             <div class="row no-print">
                                 <div class="col-12">
                                     @if($order->order_status === 'approved')
-                                        <a href="{{ route('admin.invoice.order_print', $order->id) }}" target="_blank" class="btn btn-default">
+                                        <a href="{{ route('admin.invoice.order_print', $order->id) }}" target="_blank" class="btn btn-default float-right">
                                             <i class="fa fa-print"></i> Print
                                         </a>
                                     @endif
@@ -171,11 +171,13 @@
                                             Approved Payment
                                         </a>
                                     @endif
-                                    @if($order->order_status === 'approved')
+                                  {{--
+                                   @if($order->order_status === 'approved')
                                         <a href="{{ route('admin.order.download', $order->id) }}" target="_blank" class="btn btn-primary float-right" style="margin-right: 5px;">
                                             <i class="fa fa-download"></i> Generate PDF
                                         </a>
                                     @endif
+                                  --}}
                                 </div>
                             </div>
                         </div>
