@@ -73,12 +73,6 @@
                                 <span class="info-box-number">{{ $month->sum('total') }} {{ $settings->Currency }}</span>
                                 @php
 
-                                    if ($previous_month->sum('total') != 0)
-                                    {
-                                        $percentage = (($month->sum('total') - $previous_month->sum('total'))/ $previous_month->sum('total'))*100;
-                                    } else {
-                                        $percentage = 0;
-                                    }
 
                                 @endphp
 
@@ -205,13 +199,7 @@
                                 <span class="info-box-text">This Year's Paid</span>
                                 <span class="info-box-number">{{ $year->sum('pay') }} {{ $settings->Currency }}</span>
                                 @php
-
-                                    if($previous_month->sum('pay') != 0)
-                                    {
-                                        $percentage = (($year->sum('pay') - $previous_year->sum('pay'))/ $previous_year->sum('pay'))*100;
-                                    } else {
-                                        $percentage = 0;
-                                    }
+ 
 
 
                                 @endphp
